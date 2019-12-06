@@ -2,6 +2,10 @@
 
 Repologic es un sitio en donde podés hacer que tus compras de ferretería y para el hogar sean distintas. 
 Nuestras decisiones de negocios están en sintonía con el cuidado del medioambiente. Ofrecemos innovadoras ofertas y soluciones que sean acordes a este principio sin descuidar la practicidad y la comodidad que el cliente busca.
+Electricidad:  Lamparas con bajo consumo para reducir gastos y cuidar el ambiente.
+Herramientas Ecologicas: herramientas sustentables, y de larga duracion.
+Plomeria: filtros ecologicos para purificacion del agua.
+Construccion: ladrilos de materiales reciclados.
 
 Algunos sitios en los cuales nos inspiramos para nuestro modelo de negocio:
 
