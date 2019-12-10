@@ -17,11 +17,12 @@
 	<div class="container">
 		<!-- 1) Telefono y Mail (Iconos y Textos) | Login (icono y evento) y Carrito de Compras (Icono y evento) (2 columnas)-->
 		<div class="row justify-content-between">
-			<div class="col-5 col-md-4 col-l-5">
+			<div class="col-5 col-md-5 col-l-5">
 				<h3 style="text-align:center;">11132435469<i class="fab fa-whatsapp"></i></h3>
 			</div>
-			<div class="col-5 col-md-5 offset-md-1 col-l-4">
-			<h3 style="text-align:center;">Tu carrito<i class="fas fa-cart-plus"></i></h3>			
+			<div class="col-4 col-md-4 col-l-3"></div>
+			<div class="col-3 col-md-3 col-l-4">
+			<h3 style="text-align:right;">Tu carrito<i class="fas fa-cart-plus"></i></h3>			
 			</div>
 		</div>
 		<!-- 2) Logo | Buscador (Icono y evento)-->
@@ -32,11 +33,27 @@
 		</div>
 
 		<!-- 3) HTML <select> Tag / Combobox (4 columnas) -->
-		<div class="row justify-content-between">
-			<div class="col-2 col-md-2 col-l-2">Electricidad</div>
-			<div class="col-2 col-md-2 col-l-2">Herramientas</div>
-			<div class="col-2 col-md-2 col-l-2">Plomeria</div>
-			<div class="col-2 col-md-2 col-l-2">Construccion</div>							
+		<div class="row justify-content-around">
+			<div class="col-1 col-md-2 col-l-2">
+				<button type="button" class="btn btn-success btn-link">
+						<h4 style="text-align:center;">Electricidad</h4></button>
+			</div>
+
+			<div class="col-1 col-md-2 col-l-2">
+					<button type="button" class="btn btn-success btn-link">
+							<h4 style="text-align:center;">Herramientas</h4></button>
+									<!-- ACA QUISE QUE VALLA LA LINK ... -->
+							<a href="/Electricidad" class="btn btn-success"></a>
+			</div>
+			<div class="col-1 col-md-2 col-l-2">
+				<button type="button" class="btn btn-success btn-link">
+					<h4 style="text-align:center;">Plomeria</h4></button>
+
+				</div>
+			<div class="col-1 col-md-2 col-l-2">
+				<button type="button" class="btn btn-success btn-link">
+					<h4 style="text-align:center;">Construccion</h4></button>
+			</div>							
 		</div>
 		<!-- 4) Banner ofertas  (1 columna) -->
 		<div class="row justify-content-between">
@@ -50,11 +67,13 @@
 			<div class="col-12 col-md-4 offset-md-1">PRODUCTO 3</div>
 			<div class="col-12 col-md-4 offset-md-1">PRODUCTO 4</div>		
 
-	<footer class="footer">
+	<footer class="footer" >
 		</div>
 		<!-- 6) Footer (? columnas) -->
 		 <div class="row justify-content-around">
-			<div class="col-12 col-md-12">FOOTER</div>
+			<div class="col-12 col-md-12">
+			<ul>Footer</ul>
+			</div>
 		 </div>
 	    </div>
     </footer>
@@ -62,3 +81,4 @@
 </body>
 
 </html>
+		<!-- CUANDO LO PONES EN RESOLUCION DE CELULAR CHICO SE DESVIRTUA LOS BOTONES-->
