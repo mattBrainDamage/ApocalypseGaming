@@ -14,4 +14,11 @@ const controller = {
 	}
 };
 
+const Electricidad = {
+	root : (req,res) => {
+		let html = readHTML("Electricidad");
+		res.send(html);
+	}
+}
+
 module.exports = controller

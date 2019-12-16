@@ -5,6 +5,7 @@
 * {
 
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body{
@@ -45,9 +46,17 @@ h4 {
     color:#111114;
 }
 
+#Electricidad {
+  background-color: khaki;
+}
+/*
 .carousel {
     position: relative;
-  }
+   /* background-image: url("../images/imagen1banner.jpg");*/
+   /*width: 100%;
+   /*
+
+}
   
   .carousel-inner {
     position: relative;
@@ -155,7 +164,7 @@ h4 {
     background-image: carousel-control-next-icon-bg;
   }
 
-
+*/
 
 
 footer{
