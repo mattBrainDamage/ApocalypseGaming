@@ -1,0 +1,61 @@
+* {
+
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-image: url(../images/backIndex.png) ;
+    background-size: cover;
+}
+
+ul,ol {
+    margin: 0;
+    padding : 0;
+    list-style: none;
+}
+
+a {
+    display: flex;
+    text-decoration: none;
+
+}
+
+
+.main-header {
+    background-color: #81807c;
+    padding: 10px ;
+}
+
+h3{
+    background-color:none;
+    width: fit-content;
+}
+
+h4 {
+    border:0px;
+    padding:0;
+    margin:0;
+    background:none;
+    color:#111114;
+}
+
+
+ img{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+
+}
+
+
+#botones{
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.row {
+  margin: 3rem 0;
+}
