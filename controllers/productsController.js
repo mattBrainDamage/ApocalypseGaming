@@ -7,11 +7,12 @@ function readHTML (fileName) {
 	return htmlFile;
 }
 
-const controller = {
+const productsController = {
 	index: (req, res) => {
-		res.render('index');
+        let html = readHTML('productos');
+		res.send(html);
 	}
 };
 
 
-module.exports = controller
+module.exports = productsController
