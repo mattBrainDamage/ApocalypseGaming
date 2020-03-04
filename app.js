@@ -4,6 +4,8 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
+const methodOverride = require('method-override');
+
 
 // ************ express() - (don't touch) ************
 const app = express();
@@ -14,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 
 // ************ Template Engine - (don't touch) ************
 app.set('view engine', 'ejs');
@@ -24,9 +27,14 @@ app.set('view engine', 'ejs');
 // ************ Route System require and use() ************
 const mainRouter = require('./routes/main');
 const productsRouter = require('./routes/products')
-app.use('/', mainRouter);
-app.use('/productos', productsRouter);
+const usersRouter = require('./routes/users')
 
+app.use('/', mainRouter);
+app.use('/products', productsRouter);
+app.use('/results', productsRouter);
+app.use('/users', usersRouter);
+app.use('/register', usersRouter);
+app.use('/useredit', usersRouter);
 
 
 // ************ DON'T TOUCH FROM HERE ************

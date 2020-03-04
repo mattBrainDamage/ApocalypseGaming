@@ -1,0 +1,27 @@
+<%- include('partials/head') %> 
+
+<body>
+
+        <%- include('partials/header') %>
+
+        <h1>Usuarios</h1>
+
+        <ul>
+                <% users.forEach(product => { %>
+                <li>
+                    Nombre:   <%=product.firstName%><br>
+                    Apellido: <%=product.lastName%><br>
+                    E-mail:   <%=product.eMail%><br>
+                    <form action="/users/useredit/<%= product.id-1 %>" method="POST">
+                            <button type="submit">Editar</button>                        
+                    </form>
+                    <form action="/users/delete/<%= product.id-1 %>/?_method=DELETE" method="POST">
+                        <button type="submit">Borrar</button>                        
+                    </form>                   
+                </li>
+                <%}); %>
+        </ul>
+
+        <%- include('partials/footer') %> 
+</body>
+</html>

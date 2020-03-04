@@ -1,0 +1,27 @@
+<%- include('partials/head') %> 
+
+<body>
+
+        <%- include('partials/header') %>
+        
+        <h1>Crear usuario</h1>
+
+        <form action="/users/register" method="POST">
+
+            <div>
+                <label>Nombre:</label>
+                <input type="text" name="firstName">
+            </div>
+            <div>
+                <label>Apellido:</label>
+                <input type="text" name="lastName">
+            </div>
+            <div>
+                <label>E-mail:</label>
+                <input type="text" name="eMail">
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+        <%- include('partials/footer') %> 
+</body>
+</html>

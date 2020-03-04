@@ -5,7 +5,9 @@ const router = express.Router();
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
 
-/* GET - home page. */
+/* GET - products page. */
 router.get('/', productsController.index);
+router.get('/results', productsController.results);
+
 
 module.exports = router;

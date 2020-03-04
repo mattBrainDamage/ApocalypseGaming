@@ -1,80 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Repologic | Sitio sustentable</title>
-	<!-- Font Awesome Stylesheet -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-	<!-- Bootstrap Grid Stylesheet -->
-	<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
-	<!-- Own Stylesheet -->
-	<link rel="stylesheet" href="/css/app.css">
-	
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	
-</head>
+<%- include('partials/head') %> 
 
-<main>
+<body>
 	<div class="container-fluid">
 		
-		
-	<header>
-		<!-- 1) Telefono y Mail (Iconos y Textos) | Login (icono y evento) y Carrito de Compras (Icono y evento) (2 columnas)-->
-		<div class="row">
-			<div class="col-sm-12 col-md-8 col-lg-8">
-				<h3 style="text-align:left;">11132435469<i class="fab fa-whatsapp"></i></h3>
-			</div>
-
-
-			<div class="col-sm-12 col-md-4 col-lg-4">
-				<h3 style="text-align:right;">Tu carrito<i class="fas fa-cart-plus"></i></h3>			
-			</div>
-
-		</div>
-		
-		
-		
-		<!-- 2) Logo | Buscador (Icono y evento)-->
-        <div class="row" id="rowTwo">
-			<div class="col-sm-6 col-md-4 col-lg-4">
-				
-				<img class="d-block w-100" src="/images/Anotacion2.png">
-			
-			</div>
-
-			<div class="col-sm-6 col-md-8 col-lg-8">
-
-
-				<form class="nav-search" action=" " method="GET" role="search">
-					<input type="text" 
-					class="nav-search-input" 
-					aria-label="Ingresá lo que buscás" 
-					name="as_word" 
-					placeholder="Buscar productos y más…" 
-					maxlength="120" 
-					autofocus="" 
-					autocapitalize="off" 
-					autocorrect="off" 
-					spellcheck="false" 
-					autocomplete="off" 
-					>
-
-					<button type="submit" class="nav-search-btn">
-						<div role="img" aria-label="Buscar" class="nav-icon-search">
-							<i class="fas fa-search"></i>
-						</div>
-					</button>
-				</form>
-
-
-
-			</div>
-		</div>	
-
-
-	</header>
+    <%- include('partials/header') %>
 	
 	<section>
 
@@ -175,17 +104,8 @@
 
 	</section>
 
-	<footer>
-		<!-- 6) Footer (? columnas) -->
 
-		<div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-12">
-				<h1>Footer</h1>
-			</div>
-		</div>
-
-	</footer>
-
+	<%- include('partials/footer') %> 
 
 
 	</div>		
@@ -194,7 +114,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-</main>
+</body>
 					
 </html>
-					<!-- CUANDO LO PONES EN RESOLUCION DE CELULAR CHICO SE DESVIRTUA LOS BOTONES-->

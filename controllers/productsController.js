@@ -1,18 +1,59 @@
-const fs = require('fs');
-const path = require('path');
 
-// ************ Function to Read an HTML File ************
-function readHTML (fileName) {
-	let htmlFile = fs.readFileSync(path.join(__dirname, `/../views/${fileName}.html`), 'utf-8');
-	return htmlFile;
-}
 
-const productsController = {
+
+const productsController = 
+
+{
 	index: (req, res) => {
-        let html = readHTML('productos');
-		res.send(html);
+
+		let celulares = [
+			{
+				nombre: 'Motorola Moto E6 Plus',
+				precio: 14999
+			},
+			{
+				nombre: 'Motorola Moto G7',
+				precio: 19999
+			},
+			{
+				nombre: 'Alcatel 5033A',
+				precio: 6999
+			},
+			{
+				nombre: 'Samsung Galaxy A50',
+				precio: 33499
+			}
+		];
+
+		res.render('products', {'celulares': celulares});
+	},
+	results : (req, res) => {
+		let celulares = [
+			{
+				nombre: 'Motorola Moto E6 Plus',
+				precio: 14999
+			},
+			{
+				nombre: 'Motorola Moto G7',
+				precio: 19999
+			},
+			{
+				nombre: 'Alcatel 5033A',
+				precio: 6999
+			},
+			{
+				nombre: 'Samsung Galaxy A50',
+				precio: 33499
+			}
+		];
+
+
+		const result = celulares.filter(product => product.precio < req.query.max);
+		res.render('results',{'result': result})
 	}
-};
 
+}
+;
 
-module.exports = productsController
+module.exports = productsController ;
+
