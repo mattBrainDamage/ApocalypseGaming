@@ -1,0 +1,22 @@
+<%- include('partials/head') %> 
+
+<body>
+
+        <%- include('partials/navbar') %>
+        <h1>Productos resultantes</h1>
+
+        <ul>
+            <% result.forEach(product => { %>
+                <li><%=product.productName%></li>
+                <p>Precio: <%=product.price%></p>
+            <%}); %>
+        </ul>
+
+        <h2>Productos con precios menores a </h2>
+        <form action="/products/results" method="GET">
+            <input type="search" name="max">
+            <input type="submit" value="Search">
+        </form>
+        <%- include('partials/footer') %> 
+</body>
+</html>

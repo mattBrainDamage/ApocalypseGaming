@@ -1,0 +1,49 @@
+[
+ {
+  "id": 1,
+  "full_name": "Javi Herrera",
+  "email": "javi@dh.com",
+  "password": "$2b$10$DtuILRroUp2fAYkBhzOMk.W5kP0mKtxPx5IYX8m5CqR9Gyg7r.f36",
+  "country": "Col",
+  "avatar": "javi_herrera_1578763812685.jpg"
+ },
+ {
+  "id": 2,
+  "full_name": "Lando Cortés",
+  "email": "lando@dh.com",
+  "password": "$2b$10$BQy8wXQ.qOa1S/S/Yp4vVutigUZBvMecqTn7gfOU.v846z1RiiwTS",
+  "country": "Arg",
+  "avatar": "lando_cortés_1578764143923.jpg"
+ },
+ {
+  "id": 3,
+  "full_name": "matt",
+  "email": "ngr",
+  "password": "$2b$10$XHie3qaUXqHZrmQwY90MKeGqipRsl/7P4FI0G7qYFecPn8YWz7jEm",
+  "country": "Arg",
+  "avatar": "matt_1585631956961.jpg"
+ },
+ {
+  "id": 4,
+  "full_name": "matt",
+  "email": "matt@dh.com",
+  "password": "$2b$10$wMYT05oiKG.b5JFb99l9sO44dLTG5sYadsiP1s0k7UfiEVwnV6l6W",
+  "country": "Arg",
+  "avatar": "matt_1585692667594.jpg"
+ },
+ {
+  "id": 5,
+  "full_name": "ngr",
+  "email": "ngr@dh.com",
+  "password": "$2b$10$YlajLDn0KSsVLIgeaBeWNO3mdyy3tbD/1aBmsmC8kB.IS.BLEN20a",
+  "country": "Arg",
+  "avatar": "ngr_1585695333025.jpg"
+ },
+ {
+  "id": 6,
+  "full_name": "",
+  "email": "",
+  "password": "$2b$10$vz5BiEsSnkm.H83dt1rv4e17H0g4eI58tUkAd2BVnOwYROSSECk5K",
+  "avatar": "_1585830941316.jpg"
+ }
+]
