@@ -1,2 +1,6 @@
-Apocalypse Gaming es un sitio en el cual se puede acceder a compra de video juegos para para diferentes consolas.
+Apocalypse Gaming. Proyecto de e-commerce de video juegos.
+
+https://www.uppergaming.com.ar/
+http://www.gamersforever.com.ar/
+https://www.cdmarket.com.ar/
 ```
