@@ -5,18 +5,15 @@ module.exports = (sequelize, dataTypes) => {
 			autoIncrement: true,
 			type: dataTypes.INTEGER
 		},
-		contact_name: {
+		name: {
 			type: dataTypes.STRING
 		},
-		contact_email: {
+		email: {
 			type: dataTypes.STRING
         },
-        contact_msg: {
+        msg: {
 			type: dataTypes.STRING
-		},
-	}, {
-		// tableName: 'Contacts'
-		timestamps: false
+		}
 	});
 
 

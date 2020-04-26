@@ -1,27 +1,23 @@
 
 <%- include('partials/head'); %>
 
-<body>
-	<%- include('partials/navbar'); %>
-
-	<div class="row justify-content-center">	
-	<!-- Login-Form -->
+	<!-- Contact-Form -->
     <form method="POST" action="/contact">
 
-        <div  class="col-lg-12">
+        <div class="col-lg-12">
             <label><b>Nombre</b></label>
-            <input type="text" class="form-control" name="contact_name">
+            <input type="text" class="form-control" name="name">
           </div>
 
         <div class="col-lg-12">
-          <label>E-mail</label>
-          <input type="email" class="form-control" name="contact_email" placeholder="nombre@example.com">
+          <label><b>E-mail</b></label>
+          <input type="email" class="form-control" name="email" placeholder="nombre@example.com">
         </div>
 
 
         <div class="col-lg-12">
           <label><b>Motivo</b></label>
-          <textarea class="form-control" name="contact_msg"></textarea>
+          <textarea class="form-control" name="msg"></textarea>
         </div>
         <br>
         <br>
@@ -30,9 +26,6 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
     </form>
-	<!-- //Login-Form -->
+	<!-- //Contact-Form -->
 
-	</div>
-	<%- include('partials/footer'); %>
-</body>
-</html>
+<%- include('partials/footer'); %>

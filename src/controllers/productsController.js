@@ -1,66 +1,12 @@
-
-
 const db = require('../database/models/')
 const sequelize = db.sequelize;
-
 const Op = db.Sequelize.Op;
-
-
 
 // Modules
 const fs = require('fs');
-const bcrypt = require('bcrypt');
-const path = require('path');
 
 
 
-// Constants
-const userFilePath = path.join(__dirname, '../data/users.json');
-
-// Helper Functions
-
-
-function getAllUsers() {
-	let usersFileContent = fs.readFileSync(userFilePath, 'utf-8');
-	let finalUsers = usersFileContent == '' ? [] : JSON.parse(usersFileContent);
-	return finalUsers;
-}
-
-function storeUser(newUserData) {
-	// Traer a todos los usuarios
-	let allUsers = getAllUsers();
-	// Generar el ID y asignarlo al nuevo usuario
-	newUserData = {
-		id: generateUserId(),
-		...newUserData
-	};
-	// Insertar el nuevo usuario en el array de TODOS los usuarios
-	allUsers.push(newUserData);
-	// Volver a reescribir el users.json
-	fs.writeFileSync(userFilePath, JSON.stringify(allUsers, null, ' '));
-	// Finalmente, retornar la información del usuario nuevo
-	return newUserData;
-}
-function generateUserId() {
-	let allUsers = getAllUsers();
-	if (allUsers.length == 0) {
-		return 1;
-	}
-	let lastUser = allUsers.pop();
-	return lastUser.id + 1;
-}
-
-function getUserByEmail(email) {
-	let allUsers = getAllUsers();
-	let userByEmail = allUsers.find(oneUser => oneUser.email == email);
-	return userByEmail;
-}
-
-function getUserById(id) {
-	let allUsers = getAllUsers();
-	let userById = allUsers.find(oneUser => oneUser.id == id);
-	return userById;
-}
 
 
 /*
@@ -73,59 +19,78 @@ gifResource.random().then(results=>{
 
 const productsController = {
 
-	index: (req, res)=>{
-
-
-		let userLogged = getUserById(req.session.userId);
-
-		if(userLogged){
-
-
+	index: (req, res) => {
 			db.Games
-				.findAll({
-					where: {
-						rating : {  [Op.gt]: 0 }
-					},
-					include : [{association : 'genre'}]
-				})
-				.then(products => {
-					return res.render('products', { products, userLogged });
-		 		})
+				.findAll()
+				.then(games => {
+					return res.render('products/products', { games });
+				 })
 				.catch(error => console.log(error));
-		} else {
-				res.redirect('/');
-		}
-	
+		
 
 	},
-
+	
+	
 	create: (req, res) => {
-		sequelize
+		
+		
+		if(res.locals.userLogged.category=='admin'){
+			sequelize
 			.query('SELECT * FROM genres')
 			.then(genresInDB => {
-				return res.render('productcreate', { genres: genresInDB[0] });
+				return res.render('products/productCreate', { genres: genresInDB[0] });
 			})
 			.catch(error => console.log(error))
+		} else {
+			res.redirect('/products')
+		}
+			
+			
+			
 	},
+
+	show: (req, res) => {
+			db.Games
+				.findByPk(
+					req.params.id,
+					{
+						// include: ['genre']
+					}
+				)
+				.then(game => {
+					console.log(game)
+					return res.render('products/productDetail', { game, title: game.game_name  });
+				})
+				.catch(error => console.log(error));
+	},
+
 	store: (req, res) => {
+
+		req.body.image = req.file.filename;
+
 		db.Games.create(req.body);
 		return res.redirect('/products');
 	},
 
 	edit: (req, res) => {
+
+
+
 		db.Games
 			.findByPk(req.params.id)
 			.then(game => {
-				// Antes de enviar al peli a al formulario, vamos a traer los géneros
+				// Antes de enviar el juego al formulario, vamos a traer los géneros
 				sequelize
 					.query('SELECT * FROM genres')
 					.then(genresInDB => {
-						return res.render('productedit', { game, genres: genresInDB[0] });
+						return res.render('products/productEdit', { game, genres: genresInDB[0] });
 					})
 			})
 			.catch(error => console.log(error));
 	},
+	
 	update: (req, res) => {
+		req.body.image = req.file.filename;
 		db.Games
 			.update(
 				req.body,

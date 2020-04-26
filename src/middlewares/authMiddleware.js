@@ -1,8 +1,14 @@
 function authMiddleware (req, res, next) {
-	if (req.session.userId == undefined) {
-		return res.redirect('/users/login');
+	res.locals.userLogged = false;
+	if (req.session.user) {
+		res.locals.userLogged = req.session.user;
+	} else if (req.cookies.userCookie){
+		res.locals.userLogged = req.cookies.userCookie;
 	}
+
 	next();
 }
 
-module.exports = authMiddleware;
+module.exports = authMiddleware;	
+
+

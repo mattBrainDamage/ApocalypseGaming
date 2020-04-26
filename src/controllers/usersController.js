@@ -1,63 +1,14 @@
 
-
-//////////////////////////////
+const db = require('../database/models/')
+const sequelize = db.sequelize;
+const Op = db.Sequelize.Op;
 
 
 // Modules
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const path = require('path');
-
-
-
-// Constants
-const userFilePath = path.join(__dirname, '../data/users.json');
-
-// Helper Functions
-
-function getAllUsers() {
-	let usersFileContent = fs.readFileSync(userFilePath, 'utf-8');
-	let finalUsers = usersFileContent == '' ? [] : JSON.parse(usersFileContent);
-	return finalUsers;
-}
-
-function storeUser(newUserData) {
-	// Traer a todos los usuarios
-	let allUsers = getAllUsers();
-	// Generar el ID y asignarlo al nuevo usuario
-	newUserData = {
-		id: generateUserId(),
-		...newUserData
-	};
-	// Insertar el nuevo usuario en el array de TODOS los usuarios
-	allUsers.push(newUserData);
-	// Volver a reescribir el users.json
-	fs.writeFileSync(userFilePath, JSON.stringify(allUsers, null, ' '));
-	// Finalmente, retornar la información del usuario nuevo
-	return newUserData;
-}
-
-function generateUserId() {
-	let allUsers = getAllUsers();
-	if (allUsers.length == 0) {
-		return 1;
-	}
-	let lastUser = allUsers.pop();
-	return lastUser.id + 1;
-}
-
-function getUserByEmail(email) {
-	let allUsers = getAllUsers();
-	let userByEmail = allUsers.find(oneUser => oneUser.email == email);
-	return userByEmail;
-}
-
-function getUserById(id) {
-	let allUsers = getAllUsers();
-	let userById = allUsers.find(oneUser => oneUser.id == id);
-	return userById;
-}
-
+const {check, validationResult, body} = require('express-validator');
 
 
 
@@ -67,92 +18,201 @@ function getUserById(id) {
 const usersController = {
 
 	index: (req, res) => {
-		let userLogged = getUserById(req.session.userId);
 
-		if(userLogged){
-		   res.render('users',{userLogged});
-		} else {
-			res.redirect('/');
-		}
+			db.Users
+			.findAll()
+			.then(users => {
+				return res.render('users/users', users);
+			 })
+			.catch(error => console.log(error));
+
 	},
 	register: (req, res) => {
-		res.render('usersRegisterForm');
+		res.render('users/userRegister');
 	},
 	
 	store: (req, res) => {		
 
+/* a ver qué pasa */
+		const hasErrorGetMessage = (field, errors) => {
+			for (let oneError of errors) {
+				if (oneError.param == field) {
+					return oneError.msg;
+				}
+			}
+			return false;
+		}
 		
-		// Hash del password
-		req.body.password = bcrypt.hashSync(req.body.password, 10);
+		let errorsResult = validationResult(req);
 
-		// Eliminar la propiedad re_password
-		delete req.body.re_password;
+		if ( !errorsResult.isEmpty() ) {
+			return res.render('users/userRegister', {
+				errors: errorsResult.array(),
+				hasErrorGetMessage,
+				oldData: req.body
+			});
 
-		// Asignar el nombre final de la imagen
-		req.body.avatar = req.file.filename;
+		} else {
 
-		// Guardar al usario y como la función retorna la data del usuario lo almacenamos en ela variable "user"
-		let user = storeUser(req.body);
+			// Hash del password
+			req.body.password = bcrypt.hashSync(req.body.password, 10);
+			// Eliminar la propiedad re_password
+			delete req.body.re_password;
+			// Asignar el nombre final de la imagen
+			req.body.avatar = req.file.filename;
+			
+			
+			
+			db.Users.create(req.body).then(user =>{
+			
+				req.session.user = user;
+				res.locals.user = req.session.user;
+				res.cookie('userCookie', user, { maxAge: 60000 * 60 });
+				return res.redirect('profile');
+			
+			});
+		}
 
-		// Setear en session el ID del usuario nuevo para auto loguearlo
-		req.session.userId = user.id;
 
-		// Setear la cookie para mantener al usuario logueado
-		res.cookie('userCookie', user.id, { maxAge: 60000 * 60 });
 
-		// Redirección al profile
-		return res.redirect('/users/profile');
+
+
+/* a ver qué pasa */
+
+
+
+
+
+
 	},
 
 	login: (req, res) => {
-		res.render('usersLoginForm');
+		res.render('users/userLogin');
 	},
 
 	processLogin: (req, res) => {
 		// Buscar usuario por email
-		let user = getUserByEmail(req.body.email);		
-		let userLogged = getUserById(req.session.userId);
+		let errors = validationResult(req);
 
-		// Si encontramos al usuario
-		if (user != undefined) {
-			// Al ya tener al usuario, comparamos las contraseñas
-			if (bcrypt.compareSync(req.body.password, user.password)) {
-				// Setear en session el ID del usuario
-				req.session.userId = user.id;
+		if(errors.isEmpty()){
 
-				// Setear la cookie
-				if (req.body.remember_user) {
-					res.cookie('userCookie', user.id, { maxAge: 60000 * 60 });
+			db.Users.findOne({
+				where : {
+					email : req.body.email,
 				}
+				}).then(user => {
+					// Si encontramos al usuario
+					if (user != undefined) {
+						// Al ya tener al usuario, comparamos las contraseñas
+						
+						if(bcrypt.compareSync(req.body.password, user.password)) {
+							// Borro el password para no dejarlo en sesión y asigno el usuario a la sesión
+							delete user.dataValues.password;
+							req.session.user = user;
+							 // Setear la cookie
+							 if (req.body.remember_user) {
+								 res.cookie('userCookie', req.session.user, { maxAge: 60000 * 60 });
+							 }
+	
+						// Redireccionamos al visitante a su perfil
+			
+							 return res.redirect('profile');
+	
+			
+						} else {
+							let errors = [{msg: 'El usuario o la contraseña es invalida'}]
+							res.render('users/userLogin', {errors});
 
-				// Redireccionamos al visitante a su perfil
-				if (req.body.email != 'matt@dh.com') {			
-					return res.redirect(`/users/profile/`);
-				} else{
-					return res.render(`users`,{userLogged});
-				}
+						}
+					} else {
+						let errors = [{msg: 'El usuario o la contraseña es invalida'}]
+						res.render('users/userLogin', {errors});
 
-			} else {
-				res.send('Credenciales inválidas');
-			}
+					}
+	
+				})
 		} else {
-			res.send('No hay usuarios registrados con ese email');
+
+			res.render('users/userLogin',{ errors : errors.errors})
 		}
+		
+
 	},
 
 	profile: (req, res) => {
-		let userLogged = getUserById(req.session.userId);
-		res.render('userProfile', { userLogged });
-	},
 
-	logout: (req, res) => {
-		// Destruir la session
-		req.session.destroy();
-		// Destruir la cookie
-		res.cookie('userCookie', null, { maxAge: 1 });
-		
-		return res.redirect('/users/profile');
-	}
+		return res.render('users/userProfile', {userLogged : res.locals.userLogged});
+
+	},
+	edit: (req, res) => {
+
+
+		return res.render('users/userEdit', {userLogged :res.locals.userLogged});
+
+	},
+	update: (req, res) => {
+
+		const hasErrorGetMessage = (field, errors) => {
+			for (let oneError of errors) {
+				if (oneError.param == field) {
+					return oneError.msg;
+				}
+			}
+			return false;
+		}
+
+		let errorsResult = validationResult(req);
+
+		if ( !errorsResult.isEmpty() ) {
+			return res.render('users/userEdit', {
+				errors: errorsResult.array(),
+				hasErrorGetMessage,
+				oldData: req.body
+			});
+
+		} else {
+
+			// Asignar el nombre final de la imagen
+
+			if(typeof req.file != 'undefined'){
+				req.body.avatar = req.file.filename;
+				req.session.user.avatar = req.body.avatar;
+			}
+
+
+			req.session.user.firstName = req.body.firstName;
+			req.session.user.lastName = req.body.lastName;
+			//req.session.user.email = req.body.email;
+				db.Users.update(
+					req.body,
+					{
+						where: {
+							id: res.locals.userLogged.id
+						}
+					}
+				).then(() =>{
+					
+					return res.redirect('profile');
+			
+				});
+			
+			}
+			
+			},
+			
+			logout: (req, res) => {
+			// Destruir la session
+			req.session.destroy();
+			// Destruir la cookie
+			res.cookie('userCookie', null, { maxAge: 1 });
+			
+			return res.redirect('/users/login');
+		}
+///
+
+
+
+
 };
 
 module.exports = usersController;

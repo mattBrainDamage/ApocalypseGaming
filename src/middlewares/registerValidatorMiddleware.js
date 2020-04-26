@@ -2,20 +2,20 @@ const path = require('path');
 const { check } = require('express-validator');
 
 module.exports = [
-	// validando campo nombre
-	check('full_name', 'El nombre es obligatorio').notEmpty(),
+	// Campo nombre
+	check('firstName', 'El nombre es obligatorio').notEmpty(),
 
-	// validando campo email
+	// Campo email
 	check('email')
 		.notEmpty().withMessage('El email es obligatorio').bail()
-		.isEmail().withMessage('Escribí un email válido'),
+		.isEmail().withMessage('Escribí un e-mail válido'),
 
-	// validando campo password
+	// Campo password
 	check('password')
 		.notEmpty().withMessage('Escribí una contraseña').bail()
-		.isLength({ max: 4 }).withMessage('La contraseña debe tener 4 letras'),
+		.isLength({ min: 4 }).withMessage('La contraseña debe tener como mínimo 4 caracteres'),
 	
-		// validando campo avatar
+		// Campo avatar
 	check('avatar')
 		.custom((value, { req }) => {
 			let acceptedExtensions = ['.jpg', '.jpeg', '.png'];

@@ -18,3 +18,18 @@
 	<link rel="stylesheet" href="/css/app.css">
 
 </head>
+
+
+<body>
+	<header>
+		<%if(userLogged){ %>
+			<%if(userLogged.category=='admin'){ %> 
+					<%- include('navbarAdmin') %>
+			<% } else { %>
+					<%- include('navbar') %>
+			<% }  %>
+		<% } else { %>
+			<%- include('navbar') %>
+		<% }  %>
+	</header>
+    <div class="container main-container">

@@ -6,7 +6,7 @@ const logger = require('morgan');
 const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
-const userCookieMiddleware = require('./middlewares/userCookieMiddleware');
+const authMiddleware = require('./middlewares/authMiddleware');
 
 
 // ************ express() - (don't touch) ************
@@ -20,12 +20,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 app.use(session({
-  secret: 'register-login',
+  secret: 'AG',
   resave: false,
   saveUninitialized: true
 }));
 
-app.use(userCookieMiddleware);
+app.use(authMiddleware);
+
 // ************ Template Engine - (don't touch) ************
 app.set('view engine', 'ejs');
 app.set('views', './src/views'); // Seteo de la ubicación de la carpeta "views"
@@ -33,15 +34,13 @@ app.set('views', './src/views'); // Seteo de la ubicación de la carpeta "views"
 
 // ************ WRITE YOUR CODE FROM HERE ************
 // ************ Route System require and use() ************
-const mainRouter = require('./routes/main');
-const productsRouter = require('./routes/products')
-const usersRoutes = require('./routes/users')
+const mainRouter = require('./routes/mainRouter');
+const productsRouter = require('./routes/productsRouter')
+const usersRouter = require('./routes/usersRouter')
 
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
-app.use('/results', productsRouter);
-app.use('/users', usersRoutes);
-app.use('/register', usersRoutes);
+app.use('/users', usersRouter);
 
 
 
@@ -49,9 +48,7 @@ app.use('/register', usersRoutes);
 // ************ catch 404 and forward to error handler ************
 app.use((req, res, next) => next(createError(404)));
 
-// app.use((req,res,next)=>{
-//   res.status(404).render('not-found');
-// })
+
 
 // ************ error handler ************
 app.use((err, req, res, next) => {

@@ -1,0 +1,71 @@
+
+<%- include('../partials/head'); %>
+
+	
+	<!-- Login-Form -->
+	<div class="container" style="margin-top:30px; margin-bottom: 30px;">
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<h2>Ingresa</h2>
+				<div class="errors">
+					<ul></ul>
+				</div>
+				<form method="POST" action="/users/login" class="login">
+					<div class="row">
+						<div class="col-md-6">
+							<label><b>Correo electrónico:</b></label>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								  <span class="input-group-text" id="basic-addon1">@</span>
+								</div>
+								<input type="text" name="email" class="form-control" placeholder="nombre@example.com" aria-label="Username" aria-describedby="basic-addon1">
+							  </div>
+
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label><b>Password:</b></label>
+								<input type="password" name="password" class="form-control">
+								<div class="invalid-feedback">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group form-check">
+								<label class="form-check-label">
+									<input type="checkbox" class="form-check-input" name="remember_user">Recordar mi usuario
+								</label>
+							</div>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary">Registrarse</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container" style="margin-top:30px; margin-bottom: 30px;">
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+
+				<% if(typeof errors !== 'undefined'){ %>
+					<ul>
+						<% console.log(errors) %>
+						<% errors.forEach(error => { %>
+							 <li><p><%= error.msg %></p></li>
+						<% }) %>
+					</ul>
+				<% } %> 
+			</div>
+		</div>
+	</div>
+
+	<!-- //Login-Form -->
+
+
+
+	
+<%- include('../partials/footer'); %>

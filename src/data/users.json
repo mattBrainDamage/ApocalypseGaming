@@ -45,5 +45,12 @@
   "email": "",
   "password": "$2b$10$vz5BiEsSnkm.H83dt1rv4e17H0g4eI58tUkAd2BVnOwYROSSECk5K",
   "avatar": "_1585830941316.jpg"
+ },
+ {
+  "id": 7,
+  "full_name": "juan",
+  "email": "juan@dh.com",
+  "password": "$2b$10$JHPCEbMhcSavDL7WFKhRNehdVRk.XSXj5OME3e4kSCkEU.CKqXr3y",
+  "avatar": "juan_1586212082448.jpg"
  }
 ]

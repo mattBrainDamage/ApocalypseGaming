@@ -1,0 +1,22 @@
+<%- include('../partials/head'); %>
+
+
+<h1><%= game.game_name %></h1>
+<img src="/images/products/games/<%= game.image %>" width="300px">
+<br>
+<br>
+<p><b>Precio:</b> <%= game.price %></p>
+<p><b>Descripción:</b> <%= game.description %></p>
+<p><b>Genre:</b> <%= game.genre ? game.genre.name : 'No tiene género asociado' %></p>
+
+
+
+<a href="/products">volver</a>
+<a href="/products/edit/<%= game.id %>">EDITAR</a>
+<hr>
+<h5>¿Seguro que querés borrar este juego?</h5>
+<form action="/products/delete/<%= game.id %>?_method=DELETE" method="POST">
+    <button type="submit">Borrar</button>
+</form>
+
+<%- include('../partials/footer'); %>

@@ -8,10 +8,11 @@ module.exports = (sequelize, dataTypes) => {
 		game_name: {
 			type: dataTypes.STRING
 		},
-		rating: {
-			type: dataTypes.DECIMAL
-		},		rating: {
-			type: dataTypes.DECIMAL
+		image: {
+			type: dataTypes.STRING
+		},	
+		description: {
+			type: dataTypes.STRING
 		},
 		genre_id: {
 			type: dataTypes.INTEGER

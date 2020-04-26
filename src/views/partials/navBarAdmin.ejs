@@ -17,13 +17,13 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="dropNavBar">
 					<a class="dropdown-item" href="/users">Usuarios</a>
-					<a class="dropdown-item" href="/products">Productos</a>
-					<a class="dropdown-item" href="/contact">Página de contacto</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="/products">Listado de Productos</a>
+					<a class="dropdown-item" href="/products/create">Crear producto</a>					
 				</div>
 			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto align-items-center">
-			<% if (isLogged) { %>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="dropUser" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false">
@@ -36,10 +36,6 @@
 					<a class="dropdown-item" href="/users/logout">Cerrar sesión</a>
 				</div>
 			</li>
-			<% } else { %>
-			<li class="nav-item"><a class="nav-link" href="/users/register">Register</a></li>
-			<li class="nav-item"><a class="nav-link" href="/users/login">Login</a></li>
-			<% } %>
 		</ul>
 	</div>
 </nav>
