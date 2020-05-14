@@ -182,7 +182,7 @@ const usersController = {
 
 			req.session.user.firstName = req.body.firstName;
 			req.session.user.lastName = req.body.lastName;
-			//req.session.user.email = req.body.email;
+
 				db.Users.update(
 					req.body,
 					{
@@ -198,9 +198,9 @@ const usersController = {
 			
 			}
 			
-			},
+		},
 			
-			logout: (req, res) => {
+	logout: (req, res) => {
 			// Destruir la session
 			req.session.destroy();
 			// Destruir la cookie

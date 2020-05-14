@@ -13,7 +13,12 @@ const Op = db.Sequelize.Op;
 const controller = {
 	index: (req, res) => {
 
-		res.render('index');
+		db.Games
+		.findAll()
+		.then(games => {
+			return res.render('index', { games });
+		 })
+		.catch(error => console.log(error));
 
 	},
 	about: (req,res)=>{

@@ -1,14 +1,26 @@
 <%- include('../partials/head') %> 
 
-<h1>Listado de Juegos</h1>
-<ul>
-    <% for (const oneGame of games) { %>
-    <li> 
-        <b>Título:</b> <%= oneGame.game_name %><br>
-        <a href="/products/detail/<%= oneGame.id %>">Ver más</a> 
-        <br><br>
-    </li>	
-    <% } %>
-</ul>
+<div class='container products'></div>
+
+    <ul class="cards">
+        <% for (const oneGame of games) { %>
+
+         <li> 
+                <a href="/products/detail/<%= oneGame.id %>" style="text-decoration: none;">
+                    <div class="card-item">
+                        <img src="/images/products/games/<%= oneGame.image %>" class="card-img" alt="<%= oneGame.game_name %>">
+                       <h4>$ <%= oneGame.price %></h4>
+                       <p><%= oneGame.game_name %></p>
+                     </div>
+                 </a>
+        </li>	
+
+
+        <% } %>
+    </ul>
+</div>
+
+
 
 <%- include('../partials/footer') %> 
+

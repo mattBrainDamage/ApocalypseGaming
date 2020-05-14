@@ -1,0 +1,36 @@
+<%- include('../partials/head'); %>
+
+
+<!-- Creación de género --> 
+
+<div class="container" style="margin-top:30px; margin-bottom: 30px;">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2>Agregar nuevo género</h2>
+
+            <form action="/products/create" method="POST" enctype="multipart/form-data">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><b>Genero:</b></label>
+                            <input type="text" name="genre_name" class="form-control">
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<%- include('../partials/footer'); %>

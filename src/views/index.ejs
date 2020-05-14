@@ -1,7 +1,58 @@
 <%- include('partials/head') %> 
 
-<h2>Hola gamers</h2>
-<!--main content-->
+<!--carousel-->
 
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/images/banner-1.jpg" class="d-block w-100" alt="The Last Of Us Part II">
+      </div>
+      <div class="carousel-item">
+        <img src="/images/banner-2.jpg" class="d-block w-100" alt="Call Of Duty Modern Warfare">
+      </div>
+      <div class="carousel-item">
+        <img src="/images/banner-3.jpg" class="d-block w-100" alt="Death Stranding">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+<div class="product-detail">
+    <h2>Destacados</h2>
+
+    <hr>
+
+</div>
+
+ 
+<div class='container products'></div>
+
+  <ul class="cards">
+      <% for (const oneGame of games) { %>
+  
+          <li> 
+              <a href="/products/detail/<%= oneGame.id %>" style="text-decoration: none;">
+                  <div class="card-item">
+                      <img src="/images/products/games/<%= oneGame.image %>" class="card-img" alt="<%= oneGame.game_name %>">
+                      <h4>$ <%= oneGame.price %></h4>
+                      <p><%= oneGame.game_name %></p>
+                  </div>
+              </a>
+          </li>	
+  
+  
+      <% } %>
+  </ul>
+  
+</div>
 
 <%- include('partials/footer') %> 

@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Apocalypse Gaming</title>
+	<link rel="shortcut icon" href="/images/logo-agSolo.png">
 	<!-- Font Awesome Stylesheet -->
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+	
 	<!-- Bootstrap Grid Stylesheet -->
-	<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/css/app.css">
-	
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-	<link rel="stylesheet" href="/css/app.css">
 
 </head>
 
 
 <body>
+
 	<header>
+		<div class="container">
 		<%if(userLogged){ %>
 			<%if(userLogged.category=='admin'){ %> 
 					<%- include('navbarAdmin') %>
@@ -31,5 +32,10 @@
 		<% } else { %>
 			<%- include('navbar') %>
 		<% }  %>
+		</div>
 	</header>
-    <div class="container main-container">
+
+
+	<div class="container">
+	
+		<div class="container main-container">

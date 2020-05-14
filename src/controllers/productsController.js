@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 const fs = require('fs');
 
 
-
+const {check, validationResult, body} = require('express-validator');
 
 
 /*
@@ -50,30 +50,38 @@ const productsController = {
 	},
 
 	show: (req, res) => {
-			db.Games
-				.findByPk(
-					req.params.id,
-					{
-						// include: ['genre']
-					}
-				)
-				.then(game => {
-					console.log(game)
-					return res.render('products/productDetail', { game, title: game.game_name  });
-				})
-				.catch(error => console.log(error));
+		db.Games
+		.findByPk(
+			req.params.id,
+			{
+				include: ['genre']
+			}
+		)
+		.then(game => {
+			return res.render('products/productDetail', { game, title: game.game_name  });
+		})
+		.catch(error => console.log(error));
 	},
 
-	store: (req, res) => {
+	store: async (req, res) => {
 
 		req.body.image = req.file.filename;
 
-		db.Games.create(req.body);
-		return res.redirect('/products');
+		await db.Games.create(req.body);
+
+		res.redirect('/products');
+
+	},
+/*
+	store: async (req, res) => {
+		// return res.send(req.body);
+		let product = await PRODUCTS.create(req.body)
+		res.redirect(`/products/detail/${product.id}`);
 	},
 
-	edit: (req, res) => {
+*/
 
+	edit: (req, res) => {
 
 
 		db.Games
@@ -89,8 +97,39 @@ const productsController = {
 			.catch(error => console.log(error));
 	},
 	
-	update: (req, res) => {
-		req.body.image = req.file.filename;
+	update: async (req, res) => {
+		const hasErrorGetMessage = (field, errors) => {
+			for (let oneError of errors) {
+				if (oneError.param == field) {
+					return oneError.msg;
+				}
+			}
+			return false;
+		}
+
+		let errorsResult = validationResult(req);
+
+		if ( !errorsResult.isEmpty() ) {
+
+			let genres = await sequelize.query('SELECT * FROM genres')
+
+			return res.render('products/productEdit',{
+				errors: errorsResult.array(),
+				hasErrorGetMessage,
+				game : {
+					...req.body,
+					id : req.params.id
+				},
+				genres
+			});
+
+		} else {
+
+
+		if(typeof req.file != 'undefined'){
+			req.body.image = req.file.filename;
+		}
+
 		db.Games
 			.update(
 				req.body,
@@ -101,6 +140,8 @@ const productsController = {
 				}
 			)
 			.then(() => res.redirect('/products'));
+
+		}	
 	},
 	destroy: (req, res) => {
 		db.Games

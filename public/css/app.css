@@ -1,24 +1,71 @@
 /* Fonts */
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
 
+
+
+body{
+  margin:0;
+  padding: 0;
+  background-color:  black!important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+
+header{
+  background-color: black;
+}
+
+button{
+  background-color: #5785e7;
+}
 
 .bg-light {
     background-color: #9593d9 !important;
 }
 
 .bg-dark {
-    background-color: #343084!important;
+    background-color: #000000!important;
 }
-body{
-    background-color:  #343084!important;
-    min-height: 100vh;
+
+
+.navbar-brand img{
+  width: 350px;
+  height:150px;
 }
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.main-container {
+  display: flex;
+}
+
+
 
 .container-text-center{
 background-color: black!important;
 
+}
+
+.container .carousel{
+  margin-top: 20px;
+}
+
+.product-detail{
+  margin-top: 40px
+}
+
+.product-detail hr{
+  background-color: white;
 }
 
 
@@ -37,9 +84,9 @@ background-color: black!important;
 }
 
 
-
-
-
+li{
+  list-style: none;
+}
 
 
 
@@ -47,16 +94,203 @@ background-color: black!important;
 /* Productos */
 
 
-.product-box a { 
-  background-color: tomato;
-  color: #ffffff;
-  padding: 10px;
+.row no-gutters{
+  background-color:#c7c6c6;
+}
+
+.container .products{
+  display: flex;
 }
 
 h2, b, p{
   color:  #ffffff;
 }
 
-.container {
-  flex-grow: 1;
+p.card-text{
+  color: black!important;
+}
+
+p.product-detail-price{
+  color: black!important;
+}
+
+ul.actions-list{
+  padding-left: 0px;
+
+}
+
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container .card-item{
+	width:230px;
+	height: 300px;
+	border-radius: 4px;
+	box-shadow: 0 2px 2px rgba(230, 224, 224, 0.904);
+	overflow: hidden;
+	margin: 20px;
+	text-align: center;
+  transition: 0.25s;
+  background-color:#c7c6c6;
+
+}
+  
+h2.card-title{
+  color:black;
+}
+
+.container .card-item:hover{
+	transform: translateY(-15px);
+	box-shadow: 0 12px 16px rgb(245, 248, 247);
+}
+
+.container .card-item img{
+  width: 230px;
+  height: 230px;
+}
+  
+  
+.container .card-item a:link{
+  font-weight:500;
+  text-decoration:none!important;
+  color:#3498db;
+}
+
+.container .card-item p{
+  color:  #000000;
+  margin-bottom: 2px;
+}
+
+.container .card-item h4{
+  margin-top: 5px;
+  color:rgb(0, 0, 0);
+  margin-bottom: -1px;
+}
+
+
+
+/* Footer */
+
+footer{
+  bottom: 0px;
+  width: 100%;
+  background-color: #131314;
+}
+
+.main-content{
+  display: flex;
+}
+.main-content .box{
+  flex-basis: 50%;
+  padding: 10px 20px;
+  color: whitesmoke;
+} 
+
+.box h2{
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.box .content{
+  margin:  20px 0 0 0;
+  position: relative;
+}    
+.box .content:before{
+  position: absolute;
+  content:'';
+  top: -10px;
+  height: 2px;
+  width: 100%;
+  background: #1a1a1a;
+}
+
+
+
+.left .content p{
+  text-align:justify;
+}
+.left .content .social{
+  margin:  20px 0 0 0;
+}
+
+.left .content .social a{
+  padding:  0 2px;
+}
+
+.left .content .social a span{
+  height: 40px;
+  width: 40px; 
+  background-color: #131314;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.left .content .social a span:hover{
+  background: #f12020;
+}
+
+.center .content .fas{
+  font-size: 1.4375rem;
+  background: #1a1a1a;
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  text-align: center;
+  border-radius: 50%;
+  transition:0.3s;
+  cursor: pointer;
+}
+
+.center .content .fas:hover{
+  background: #f12020;
+}
+
+.center .content .text{
+  font-size: 1.0625rem;
+  font-weight: 500;
+  padding-left: 10px;
+}
+
+.center .content .phone{
+  margin: 10px 0;
+}
+
+
+
+
+
+@media (max-width: 900px) {
+  footer{
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+  }
+  .main-content{
+    flex-wrap: wrap;
+    flex-direction: column;
+    display:block;
+  }
+  .main-content .box{
+    margin: 5px 0;
+  }
+
+  .navbar-brand img{
+    width: 100px;
+    height:100px;
+  }
+}
+
+.bottom{
+  text-align: center;
+  color: whitesmoke;
 }

@@ -1,22 +1,47 @@
 <%- include('../partials/head'); %>
 
 
-<h1><%= game.game_name %></h1>
-<img src="/images/products/games/<%= game.image %>" width="300px">
-<br>
-<br>
-<p><b>Precio:</b> <%= game.price %></p>
-<p><b>Descripción:</b> <%= game.description %></p>
-<p><b>Genre:</b> <%= game.genre ? game.genre.name : 'No tiene género asociado' %></p>
+<div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="/images/products/games/<%= game.image %>" class="card-img" alt="<%= game.game_name %>">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title"><%= game.game_name %></h2>
+          <p class="card-text"><%= game.description %></p>
+          <h3>
+            $<%= game.price %>
+          </h3>
+        <ul class="actions-list">
+            <li>
+                <i class="fas fa-credit-card"> Pago en cuotas con recargo</i>
+            </li>  
+            <li>
+                <i class="fas fa-store"> Retiro gratis en local</i>
+            </li>
+        </ul>
+          <a href="#" class="btn btn-success">COMPRAR</a>
+          <hr>
+          <%if(userLogged.category=='admin'){ %> 
+              <a href="/products/edit/<%= game.id %>" class="btn btn-warning">EDITAR</a>
+              <form action="/products/delete/<%= game.id %>?_method=DELETE" method="POST"
+                 style="display: inline-flex">
+                <button type="submit" class="btn btn-danger">ELIMINAR</button>
+              </form>
+
+
+          <% }  %>
+          <a href="/products">Volver</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
-<a href="/products">volver</a>
-<a href="/products/edit/<%= game.id %>">EDITAR</a>
-<hr>
-<h5>¿Seguro que querés borrar este juego?</h5>
-<form action="/products/delete/<%= game.id %>?_method=DELETE" method="POST">
-    <button type="submit">Borrar</button>
-</form>
+
+
+
 
 <%- include('../partials/footer'); %>

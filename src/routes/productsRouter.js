@@ -27,6 +27,7 @@ const productsController = require('../controllers/productsController');
 
 
 // ************ Middlewares ************
+const editValidations = require('../middlewares/gameEditValidator');
 
 const {check, validationResult, body} = require('express-validator');
 
@@ -49,7 +50,7 @@ router.get('/detail/:id', productsController.show);
 
 /* Edición de un juego */
 router.get('/edit/:id', productsController.edit);
-router.put('/edit/:id', upload.single('image'), productsController.update);
+router.put('/edit/:id', upload.single('image'), editValidations, productsController.update);
 
  /* Eliminación de un juego */ 
 

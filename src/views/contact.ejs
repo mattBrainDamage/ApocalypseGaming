@@ -1,31 +1,46 @@
 
 <%- include('partials/head'); %>
 
-	<!-- Contact-Form -->
-    <form method="POST" action="/contact">
+  <!-- Contact-Form -->
+  
+	<div class="container" style="margin-top:30px; margin-bottom: 30px;">
+		<div class="row justify-content-center">
+      <div class="col-md-10">
+        <form method="POST" action="/contact" class="login">
+          <div class="row">
 
-        <div class="col-lg-12">
-            <label><b>Nombre</b></label>
-            <input type="text" class="form-control" name="name">
-          </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label><b>Nombre</b></label>
+                <input type="text" class="form-control" name="name">
+              </div> 
+            </div>
 
-        <div class="col-lg-12">
-          <label><b>E-mail</b></label>
-          <input type="email" class="form-control" name="email" placeholder="nombre@example.com">
-        </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label><b>E-mail</b></label>
+                <input type="email" class="form-control" name="email" placeholder="nombre@example.com">
+              </div> 
+            </div>
 
 
-        <div class="col-lg-12">
-          <label><b>Motivo</b></label>
-          <textarea class="form-control" name="msg"></textarea>
-        </div>
-        <br>
-        <br>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label><b>Motivo</b></label>
+                <textarea class="form-control" name="msg"></textarea>
+              </div>
+            </div>
 
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </div>
-    </form>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        
+          </div>  
+        </form>
+      </div>  
+    </div>
+  </div>
 	<!-- //Contact-Form -->
 
 <%- include('partials/footer'); %>
