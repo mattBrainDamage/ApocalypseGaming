@@ -181,6 +181,7 @@ footer{
   bottom: 0px;
   width: 100%;
   background-color: #131314;
+  margin-top: 30px;
 }
 
 .main-content{
@@ -294,3 +295,29 @@ footer{
   text-align: center;
   color: whitesmoke;
 }
+
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
+
+
+#profile{
+  background-color: whitesmoke;
+}
+
+#profile h4{
+  margin-top: 20px;
+} 
+
+#profile img{
+  margin-top: 2px;
+} 
+
+#profile form{
+  margin-top: 20px;
+} 

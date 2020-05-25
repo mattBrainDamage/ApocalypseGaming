@@ -83,18 +83,21 @@ const productsController = {
 
 	edit: (req, res) => {
 
-
-		db.Games
-			.findByPk(req.params.id)
-			.then(game => {
-				// Antes de enviar el juego al formulario, vamos a traer los géneros
-				sequelize
-					.query('SELECT * FROM genres')
-					.then(genresInDB => {
-						return res.render('products/productEdit', { game, genres: genresInDB[0] });
-					})
-			})
-			.catch(error => console.log(error));
+		if(res.locals.userLogged.category=='admin'){
+			db.Games
+				.findByPk(req.params.id)
+				.then(game => {
+					// Antes de enviar el juego al formulario, vamos a traer los géneros
+					sequelize
+						.query('SELECT * FROM genres')
+						.then(genresInDB => {
+							return res.render('products/productEdit', { game, genres: genresInDB[0] });
+						})
+				})
+				.catch(error => console.log(error));
+		} else {
+				res.redirect('/products')
+		}			
 	},
 	
 	update: async (req, res) => {

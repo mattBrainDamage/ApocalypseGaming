@@ -29,6 +29,8 @@ const productsController = require('../controllers/productsController');
 // ************ Middlewares ************
 const editValidations = require('../middlewares/gameEditValidator');
 
+const userMiddleware = require('../middlewares/userMiddleware');
+
 const {check, validationResult, body} = require('express-validator');
 
 
@@ -49,12 +51,12 @@ router.get('/detail/:id', productsController.show);
  router.post('/create', upload.single('image'), productsController.store);
 
 /* Edición de un juego */
-router.get('/edit/:id', productsController.edit);
+router.get('/edit/:id', userMiddleware,productsController.edit);
 router.put('/edit/:id', upload.single('image'), editValidations, productsController.update);
 
  /* Eliminación de un juego */ 
 
-router.delete('/delete/:id', productsController.destroy);
+router.delete('/delete/:id', userMiddleware,productsController.destroy);
 
 // /* Juego por título. */
 // router.get('/find-by-title', controller.find);

@@ -23,7 +23,7 @@ module.exports = [
 				throw new Error('Elegí una imagen de perfil');
 			} else if (req.file.originalname) {
 				let fileExtension = path.extname(req.file.originalname);
-				let extensionIsOk = acceptedExtensions.includes(fileExtension);
+				let extensionIsOk = acceptedExtensions.includes(fileExtension.toLowerCase());
 				if (!extensionIsOk) {
 					throw new Error('Los formatos válidos son JPG, JPEG y PNG');
 				}

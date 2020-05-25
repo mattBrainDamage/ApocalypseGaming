@@ -43,7 +43,6 @@ const editValidations = require('../middlewares/editValidatorMiddleware');
 
 router.get('/', userMiddleware, usersController.index);
 
-
 /*Guardar usuarios */
 
 router.get('/register', guestMiddleware, usersController.register);

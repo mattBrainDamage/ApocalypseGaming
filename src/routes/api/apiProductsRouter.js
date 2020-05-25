@@ -8,7 +8,7 @@ const path = require('path');
 const apiProductsController = require('../../controllers/api/apiProductsController')
 /* GET - products page. */
 router.get('/', apiProductsController.index);
-router.get('/:id', apiProductsController.find);
+/*router.get('/:id', apiProductsController.find);*/
 
 
 module.exports = router;

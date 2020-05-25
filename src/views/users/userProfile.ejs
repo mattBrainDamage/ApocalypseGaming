@@ -1,32 +1,31 @@
 <%- include('../partials/head'); %>
 
 
-<!-- Container -->
- <div class="container" style="margin-top: 40px;">
+	<div class="container" id="profile">
 		<div class="row">
-			<div class="col-md-3">
-				<h2>Hola <%= userLogged.firstName %></h2>
-				<img src="/images/avatars/<%= userLogged.avatar %>" width="100%">
-				<br>
-				<br>
-				<div class="alert alert-success"><%= userLogged.email %></div>
-				<section class="buttons">
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="well well-sm">
+					<div class="row">
+						<div class="col-sm-6 col-md-4">
+							<img src="/images/avatars/<%= userLogged.avatar %>" width="100%">
+						</div>
+						<div class="col-sm-6 col-md-8">
+							<h4><%= userLogged.firstName %></h4>
 
-					<form class="has-buttons" action="/users/" method="GET">
-						<button button type="submit" class="btn btn-primary">Listado</button>
-					</form>
-				
-					<form class="has-buttons" action="/users/delete?_method=DELETE" method="POST">
-						<button button type="submit" class="btn btn-danger">Eliminar usuario</button>
-					</form>
-				
-					<form class="has-buttons" action="/users/edit" method="GET">
-						<button button type="submit" class="btn btn-warning">Editar usuario</button>
-					</form>    
-				</section>
+
+							</i><%= userLogged.email %>
+							<br />
+							<form class="has-buttons" action="/users/edit" method="GET">
+								<button button type="submit" class="btn btn-warning">Editar usuario</button>
+							</form>   
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div> 
-	<!-- //Container -->
+	</div>
+	
+
+
 
 <%- include('../partials/footer'); %>

@@ -12,6 +12,54 @@ gifResource.random().then(results=>{
 */
 
 const apiProductsController = {
+	
+	index: (req, res) => {
+
+			let totalAmount = db.Games
+			.sum('price');
+
+			let allProducts = db.Games
+			.findAll(
+			{
+				order: [ ['id', 'DESC']],
+				attributes: ['id','game_name', 'price', 'description', 'image'],
+			}
+			);
+
+			/*Configuración para API */
+
+			Promise.all([totalAmount, allProducts])
+
+			.then (([amount, products]) => {
+			
+			let result = {  
+				metadata: {
+					url: req.originalUrl,
+					quantity: products.length, 
+					amount: amount                            
+				},
+				data: products
+			}
+				return res.send(result);
+			})
+			.catch(error => console.log(error)); 
+			}
+	}
+
+
+module.exports = apiProductsController ;
+
+
+
+
+
+
+
+
+/*
+
+
+const apiProductsController = {
 
 	index: (req, res) => {
 			db.Games
@@ -43,7 +91,7 @@ const apiProductsController = {
 
 
 module.exports = apiProductsController ;
-
+*/
 
 /*
 
